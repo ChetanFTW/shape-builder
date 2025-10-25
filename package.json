@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "@mui/icons-material": "^7.3.4"
+  },
+  "devDependencies": {
+    "eslint": "^9.38.0"
   }
 }
