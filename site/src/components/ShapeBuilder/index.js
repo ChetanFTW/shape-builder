@@ -1,6 +1,6 @@
 // /* global window */
 import React, { useEffect, useRef, useState } from "react";
-import { Wrapper, CanvasContainer, OutputBox, StyledSVG } from "./shapeBuilder.styles";
+import { Wrapper, CanvasContainer, OutputBox, StyledSVG, CoordinateDisplay } from "./shapeBuilder.styles";
 import { Button, Typography, Box } from "@layer5/sistent";
 import { SVG, extend as SVGextend } from "@svgdotjs/svg.js";
 import draw from "@svgdotjs/svg.draw.js";
@@ -8,6 +8,7 @@ import draw from "@svgdotjs/svg.draw.js";
 SVGextend(SVG.Polygon, draw);
 
 const ShapeBuilder = () => {
+  const [mouseCoords, setMouseCoords] = useState({ x: null, y: null });
   const boardRef = useRef(null);
   const polyRef = useRef(null);
   const keyHandlersRef = useRef({});
@@ -158,30 +159,49 @@ const ShapeBuilder = () => {
 
   return (
     <Wrapper>
-      <CanvasContainer>
-        <StyledSVG ref={boardRef} width="100%" height="100%">
-          <defs>
-            <pattern id="grid" width="16" height="16" patternUnits="userSpaceOnUse">
-              <path d="M 16 0 L 0 0 0 16" fill="none" stroke="#797d7a" strokeWidth="1" />
-            </pattern>
-          </defs>
-          <rect className="grid" width="100%" height="100%" fill="url(#grid)" />
-        </StyledSVG>
-        {error && (
-          <div style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            color: "red",
-            backgroundColor: "white",
-            padding: "10px",
-            borderRadius: "5px"
-          }}>
-            {error}
-          </div>
-        )}
-      </CanvasContainer>
+      <CanvasContainer
+  onMouseMove={(e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = Math.round(e.clientX - rect.left);
+    const y = Math.round(e.clientY - rect.top);
+    setMouseCoords({ x, y });
+  }}
+  onMouseLeave={() => setMouseCoords({ x: null, y: null })}
+>
+  {/* Coordinate display */}
+  {mouseCoords.x !== null && mouseCoords.y !== null && (
+    <CoordinateDisplay>
+      <span>X: {mouseCoords.x}</span>
+      <span>Y: {mouseCoords.y}</span>
+    </CoordinateDisplay>
+  )}
+
+  <StyledSVG ref={boardRef} width="100%" height="100%">
+    <defs>
+      <pattern id="grid" width="16" height="16" patternUnits="userSpaceOnUse">
+        <path d="M 16 0 L 0 0 0 16" fill="none" stroke="#797d7a" strokeWidth="1" />
+      </pattern>
+    </defs>
+    <rect className="grid" width="100%" height="100%" fill="url(#grid)" />
+  </StyledSVG>
+
+  {error && (
+    <div
+      style={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        color: "red",
+        backgroundColor: "white",
+        padding: "10px",
+        borderRadius: "5px",
+      }}
+    >
+      {error}
+    </div>
+  )}
+</CanvasContainer>
 
       <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mt: 3, mb: 3, flexWrap: "wrap" }}>
         <Button variant="contained" onClick={clearShape}>Clear</Button>
