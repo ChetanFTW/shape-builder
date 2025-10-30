@@ -184,9 +184,15 @@ const ShapeBuilder = () => {
       </CanvasContainer>
 
       <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mt: 3, mb: 3, flexWrap: "wrap" }}>
-        <Button variant="contained" onClick={clearShape}>Clear</Button>
-        <Button variant="contained" onClick={closeShape}>Close Shape</Button>
-        <Button variant="contained" onClick={handleMaximize}>Maximize</Button>
+        <Button variant="contained" onClick={clearShape} sx={{ fontFamily: "'Poppins', sans-serif" }}>
+          Clear
+        </Button>
+        <Button variant="contained" onClick={closeShape} sx={{ fontFamily: "'Poppins', sans-serif" }}>
+          Close Shape
+        </Button>
+        <Button variant="contained" onClick={handleMaximize} sx={{ fontFamily: "'Poppins', sans-serif" }}>
+          Maximize
+        </Button>
       </Box>
 
       <OutputBox>
