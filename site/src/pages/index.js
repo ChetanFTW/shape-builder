@@ -29,10 +29,10 @@ const IndexPage = () => {
           <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
             <Button
               variant="contained"
-              sx={{ 
+              sx={{
                 minWidth: "fit-content",
-                fontFamily: "'Poppins', sans-serif",  
-               }}
+                fontFamily: "'Poppins', sans-serif",
+              }}
               onClick={() => setOpen(true)}
             >
               Show Instructions
