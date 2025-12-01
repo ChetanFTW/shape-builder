@@ -48,7 +48,7 @@ const IndexPage = () => {
   const [theme, toggleTheme] = useDarkMode();
   const themeMode = theme === "light" ? lightTheme : darkTheme;
   const activeTheme = { ...themeMode, mode: theme };
-const [open, setOpen] = useState(false);
+  const [, setOpen] = useState(false);
 
   return (
     <SistentThemeProviderWithoutBaseLine>
@@ -62,31 +62,31 @@ const [open, setOpen] = useState(false);
               Click on the grid to start creating a polygon. Each click adds a point.
             </p>
           </section>
-            <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-              <Button
-                variant="contained"
-                sx={{
-                  minWidth: "fit-content",
-                  fontFamily: "'Poppins', sans-serif",
-                }}
-                onClick={() => setOpen(true)}
-              >
-                <InstructionsContainer theme={activeTheme}>
-                  <span>
-                    <Kbd theme={activeTheme}>ENTER</Kbd> / <Kbd theme={activeTheme}>ESC</Kbd> Close shape
-                  </span>
-                  <span>
-                    <Kbd theme={activeTheme}>CTRL</Kbd> Snap to grid
-                  </span>
-                  <span>
-                    <Kbd theme={activeTheme}>CTRL</Kbd> + <Kbd theme={activeTheme}>Z</Kbd> Undo
-                  </span>
-                  <span>
-                    <Kbd theme={activeTheme}>Maximize</Kbd> Visibility
-                  </span>
-                </InstructionsContainer>
-              </Button>
-            </Box>
+          <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+            <Button
+              variant="contained"
+              sx={{
+                minWidth: "fit-content",
+                fontFamily: "'Poppins', sans-serif",
+              }}
+              onClick={() => setOpen(true)}
+            >
+              <InstructionsContainer theme={activeTheme}>
+                <span>
+                  <Kbd theme={activeTheme}>ENTER</Kbd> / <Kbd theme={activeTheme}>ESC</Kbd> Close shape
+                </span>
+                <span>
+                  <Kbd theme={activeTheme}>CTRL</Kbd> Snap to grid
+                </span>
+                <span>
+                  <Kbd theme={activeTheme}>CTRL</Kbd> + <Kbd theme={activeTheme}>Z</Kbd> Undo
+                </span>
+                <span>
+                  <Kbd theme={activeTheme}>Maximize</Kbd> Visibility
+                </span>
+              </InstructionsContainer>
+            </Button>
+          </Box>
 
           {/* </section> */}
 
