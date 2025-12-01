@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { GlobalStyle, Main, lightTheme, darkTheme } from "../styles/styles";
 import { useDarkMode } from "../components/useDarkMode";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ShapeBuilder from "../components/ShapeBuilder";
-import { SistentThemeProviderWithoutBaseLine, Box } from "@sistent/sistent";
+import { SistentThemeProviderWithoutBaseLine, Box, Button } from "@sistent/sistent";
 
 const Kbd = styled.kbd`
   background-color: ${({ theme }) =>
@@ -48,6 +48,7 @@ const IndexPage = () => {
   const [theme, toggleTheme] = useDarkMode();
   const themeMode = theme === "light" ? lightTheme : darkTheme;
   const activeTheme = { ...themeMode, mode: theme };
+const [open, setOpen] = useState(false);
 
   return (
     <SistentThemeProviderWithoutBaseLine>
@@ -69,35 +70,24 @@ const IndexPage = () => {
                   fontFamily: "'Poppins', sans-serif",
                 }}
                 onClick={() => setOpen(true)}
-               >
-                <h1>Shape Builder</h1>
-
-                <p className="desc-text" style={{ margin: 0 }}>
-                  Click on the grid to start creating a polygon. Each click adds a
-                  point.
-                </p>
-
+              >
                 <InstructionsContainer theme={activeTheme}>
                   <span>
-                    <Kbd theme={activeTheme}>ENTER</Kbd> /{" "}
-                    <Kbd theme={activeTheme}>ESC</Kbd> Close shape
+                    <Kbd theme={activeTheme}>ENTER</Kbd> / <Kbd theme={activeTheme}>ESC</Kbd> Close shape
                   </span>
-
                   <span>
                     <Kbd theme={activeTheme}>CTRL</Kbd> Snap to grid
                   </span>
-
                   <span>
-                    <Kbd theme={activeTheme}>CTRL</Kbd> +{" "}
-                    <Kbd theme={activeTheme}>Z</Kbd> Undo
+                    <Kbd theme={activeTheme}>CTRL</Kbd> + <Kbd theme={activeTheme}>Z</Kbd> Undo
                   </span>
-
                   <span>
                     <Kbd theme={activeTheme}>Maximize</Kbd> Visibility
                   </span>
                 </InstructionsContainer>
               </Button>
             </Box>
+
           {/* </section> */}
 
           <ShapeBuilder />
