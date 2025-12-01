@@ -61,43 +61,44 @@ const IndexPage = () => {
               Click on the grid to start creating a polygon. Each click adds a point.
             </p>
           </section>
-          <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-            <Button
-              variant="contained"
-              sx={{
-                minWidth: "fit-content",
-                fontFamily: "'Poppins', sans-serif",
-              }}
-              onClick={() => setOpen(true)}
-            >
-              <h1>Shape Builder</h1>
+            <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+              <Button
+                variant="contained"
+                sx={{
+                  minWidth: "fit-content",
+                  fontFamily: "'Poppins', sans-serif",
+                }}
+                onClick={() => setOpen(true)}
+               >
+                <h1>Shape Builder</h1>
 
-              <p className="desc-text" style={{ margin: 0 }}>
-                Click on the grid to start creating a polygon. Each click adds a
-                point.
-              </p>
+                <p className="desc-text" style={{ margin: 0 }}>
+                  Click on the grid to start creating a polygon. Each click adds a
+                  point.
+                </p>
 
-              <InstructionsContainer theme={activeTheme}>
-                <span>
-                  <Kbd theme={activeTheme}>ENTER</Kbd> /{" "}
-                  <Kbd theme={activeTheme}>ESC</Kbd> Close shape
-                </span>
+                <InstructionsContainer theme={activeTheme}>
+                  <span>
+                    <Kbd theme={activeTheme}>ENTER</Kbd> /{" "}
+                    <Kbd theme={activeTheme}>ESC</Kbd> Close shape
+                  </span>
 
-                <span>
-                  <Kbd theme={activeTheme}>CTRL</Kbd> Snap to grid
-                </span>
+                  <span>
+                    <Kbd theme={activeTheme}>CTRL</Kbd> Snap to grid
+                  </span>
 
-                <span>
-                  <Kbd theme={activeTheme}>CTRL</Kbd> +{" "}
-                  <Kbd theme={activeTheme}>Z</Kbd> Undo
-                </span>
+                  <span>
+                    <Kbd theme={activeTheme}>CTRL</Kbd> +{" "}
+                    <Kbd theme={activeTheme}>Z</Kbd> Undo
+                  </span>
 
-                <span>
-                  <Kbd theme={activeTheme}>Maximize</Kbd> Visibility
-                </span>
-              </InstructionsContainer>
+                  <span>
+                    <Kbd theme={activeTheme}>Maximize</Kbd> Visibility
+                  </span>
+                </InstructionsContainer>
+              </Button>
             </Box>
-          </section>
+          {/* </section> */}
 
           <ShapeBuilder />
         </Main>
