@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Wrapper, CanvasContainer, OutputBox, StyledSVG, CoordinateDisplay } from "./shapeBuilder.styles";
 import { Button, Typography, Box } from "@layer5/sistent";
+
 import { SVG, extend as SVGextend } from "@svgdotjs/svg.js";
 import draw from "@svgdotjs/svg.draw.js";
 
@@ -14,6 +15,19 @@ const ShapeBuilder = () => {
   const keyHandlersRef = useRef({});
   const [result, setResult] = useState("");
   const [error, setError] = useState(null);
+  const [showCopied, setShowCopied] = useState(false);
+
+  const handleCopyToClipboard = async () => {
+    if (!result.trim()) return;
+
+    try {
+      await navigator.clipboard.writeText(result);
+      setShowCopied(true);
+      setTimeout(() => setShowCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy to clipboard:", err);
+    }
+  };
 
   const getPlottedPoints = (poly) => {
     if (!poly) return null;
@@ -67,7 +81,7 @@ const ShapeBuilder = () => {
       poly.draw("param", "snapToGrid", 0.001);
     }
 
-    if (e.key === "Enter") {
+    if (e.key === "Enter" || e.key === "Escape") {
       poly.draw("done");
       poly.fill("#00B39F");
       showCytoArray();
@@ -213,7 +227,21 @@ const ShapeBuilder = () => {
         <Typography variant="subtitle1" component="h6">
           Polygon Coordinates (SVG format):
         </Typography>
-        <textarea readOnly value={result} />
+        <div style={{ position: "relative" }}>
+          <textarea readOnly value={result} />
+          {result.trim() && (
+            <CopyButton
+              onClick={handleCopyToClipboard}
+              disabled={!result.trim()}
+            >
+              {showCopied ? (
+                "Copied"
+              ) : (
+                <CopyIcon style={{ width: "20px", height: "20px" }} />
+              )}
+            </CopyButton>
+          )}
+        </div>
       </OutputBox>
     </Wrapper>
   );
