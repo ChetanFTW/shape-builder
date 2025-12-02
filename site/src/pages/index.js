@@ -17,7 +17,7 @@ const Kbd = styled.kbd`
   border-radius: 3px;
   box-shadow: inset 0 -1px 0
     ${({ theme }) => (theme.mode === "light" ? "#c6cbd1" : "#444")};
-  color: ${({ theme }) => (theme.mode === "light" ? "#444" : "#e6e6e6")};
+  color: ${({ theme }) => (theme.mode === "light" ? "#333" : "#fff")}; /* Increased contrast for keys */
   display: inline-block;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   font-size: 11px;
@@ -31,17 +31,27 @@ const Kbd = styled.kbd`
 const InstructionsContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
-  gap: 24px;
-  margin-top: 16px;
-  font-size: 0.9rem;
-  color: ${({ theme }) => (theme.mode === "light" ? "#666" : "#aaa")};
+  gap: 20px 40px;
+  margin-top: 8px;
+  width: 100%;
+  
+  /* UPDATED: High contrast colors */
+  color: ${({ theme }) => (theme.mode === "light" ? "#111" : "#fff")};
 
   span {
     display: flex;
     align-items: center;
+    white-space: nowrap;
   }
+`;
+
+const SectionLabel = styled.h3`
+  font-size: 2rem;
+  font-weight: 500;
+  color: ${({ theme }) => (theme.mode === "light" ? "#111" : "#fff")}; /* Matched header contrast */
+  margin: 0 0 8px 0;
+  text-align: center;
 `;
 
 const IndexPage = () => {
@@ -68,30 +78,34 @@ const IndexPage = () => {
             >
               <h1>Shape Builder</h1>
 
-              <p className="desc-text" style={{ margin: 0 }}>
-                Click on the grid to start creating a polygon. Each click adds a
-                point.
-              </p>
+              {/* Instructions Section */}
+              <div style={{ textAlign: "center" }}>
+                <SectionLabel theme={activeTheme}>Instructions</SectionLabel>
+                <p className="desc-text" style={{ margin: 0 }}>
+                  Click on the grid to start creating a polygon. Each click adds a
+                  point.
+                </p>
+              </div>
 
-              <InstructionsContainer theme={activeTheme}>
-                <span>
-                  <Kbd theme={activeTheme}>ENTER</Kbd> /{" "}
-                  <Kbd theme={activeTheme}>ESC</Kbd> Close shape
-                </span>
+              {/* Key Strokes Section */}
+              <div style={{ textAlign: "center", marginTop: "2rem", width: "100%" }}>
+                <SectionLabel theme={activeTheme}>Controls</SectionLabel>
+                <InstructionsContainer theme={activeTheme}>
+                  <span>
+                    <Kbd theme={activeTheme}>ENTER</Kbd> /{" "}
+                    <Kbd theme={activeTheme}>ESC</Kbd> Close shape
+                  </span>
 
-                <span>
-                  <Kbd theme={activeTheme}>CTRL</Kbd> Snap to grid
-                </span>
+                  <span>
+                    <Kbd theme={activeTheme}>CTRL</Kbd> Snap to grid
+                  </span>
 
-                <span>
-                  <Kbd theme={activeTheme}>CTRL</Kbd> +{" "}
-                  <Kbd theme={activeTheme}>Z</Kbd> Undo
-                </span>
-
-                <span>
-                  <Kbd theme={activeTheme}>Maximize</Kbd> Visibility
-                </span>
-              </InstructionsContainer>
+                  <span>
+                    <Kbd theme={activeTheme}>CTRL</Kbd> +{" "}
+                    <Kbd theme={activeTheme}>Z</Kbd> Undo
+                  </span>
+                </InstructionsContainer>
+              </div>
             </Box>
           </section>
 
