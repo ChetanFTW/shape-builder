@@ -50,7 +50,7 @@ const SectionLabel = styled.h3`
   font-size: 2rem;
   font-weight: 500;
   color: ${({ theme }) => (theme.mode === "light" ? "#111" : "#fff")}; /* Matched header contrast */
-  margin: 0 0 12px 0;
+  margin: 0 0 8px 0;
   text-align: center;
 `;
 
