@@ -58,38 +58,30 @@ const IndexPage = () => {
         <Main>
           <section className="hero">
             <h1>Shape Builder</h1>
+            <h2> Instructions</h2>
             <p className="desc-text">
               Click on the grid to start creating a polygon. Each click adds a point.
             </p>
+             {/* Key Strokes Section */}
+              <div style={{ textAlign: "center", marginTop: "2rem", width: "100%" }}>
+                <h2> Controls</h2> 
+                <InstructionsContainer theme={activeTheme}>
+                  <span>
+                    <Kbd theme={activeTheme}>ENTER</Kbd> /{" "}
+                    <Kbd theme={activeTheme}>ESC</Kbd> Close shape
+                  </span>
+
+                  <span>
+                    <Kbd theme={activeTheme}>CTRL</Kbd> Snap to grid
+                  </span>
+
+                  <span>
+                    <Kbd theme={activeTheme}>CTRL</Kbd> +{" "}
+                    <Kbd theme={activeTheme}>Z</Kbd> Undo
+                  </span>
+                </InstructionsContainer>
+              </div>
           </section>
-          <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-            <Button
-              variant="contained"
-              sx={{
-                minWidth: "fit-content",
-                fontFamily: "'Poppins', sans-serif",
-              }}
-              onClick={() => setOpen(true)}
-            >
-              <InstructionsContainer theme={activeTheme}>
-                <span>
-                  <Kbd theme={activeTheme}>ENTER</Kbd> / <Kbd theme={activeTheme}>ESC</Kbd> Close shape
-                </span>
-                <span>
-                  <Kbd theme={activeTheme}>CTRL</Kbd> Snap to grid
-                </span>
-                <span>
-                  <Kbd theme={activeTheme}>CTRL</Kbd> + <Kbd theme={activeTheme}>Z</Kbd> Undo
-                </span>
-                <span>
-                  <Kbd theme={activeTheme}>Maximize</Kbd> Visibility
-                </span>
-              </InstructionsContainer>
-            </Button>
-          </Box>
-
-          {/* </section> */}
-
           <ShapeBuilder />
         </Main>
         <Footer />
