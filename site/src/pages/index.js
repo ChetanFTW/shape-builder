@@ -75,7 +75,7 @@ const IndexPage = () => {
              {/* Key Strokes Section */}
               <div style={{ textAlign: "center", marginTop: "2rem", width: "100%" }}>
                 <h2> Controls</h2> 
-                <InstructionsContainer theme={activeTheme}>
+                <InstructionsContainer>
                   <span>
                     <Kbd theme={activeTheme}>ENTER</Kbd> /{" "}
                     <Kbd theme={activeTheme}>ESC</Kbd> Close shape
