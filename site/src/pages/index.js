@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { GlobalStyle, Main, lightTheme, darkTheme } from "../styles/styles";
 import { useDarkMode } from "../components/useDarkMode";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ShapeBuilder from "../components/ShapeBuilder";
-import { SistentThemeProviderWithoutBaseLine, Box, Button } from "@sistent/sistent";
+import { SistentThemeProviderWithoutBaseLine } from "@sistent/sistent";
 
 const Kbd = styled.kbd`
   background-color: ${({ theme }) =>
@@ -48,7 +48,6 @@ const IndexPage = () => {
   const [theme, toggleTheme] = useDarkMode();
   const themeMode = theme === "light" ? lightTheme : darkTheme;
   const activeTheme = { ...themeMode, mode: theme };
-  const [, setOpen] = useState(false);
 
   return (
     <SistentThemeProviderWithoutBaseLine>
@@ -62,25 +61,25 @@ const IndexPage = () => {
             <p className="desc-text">
               Click on the grid to start creating a polygon. Each click adds a point.
             </p>
-             {/* Key Strokes Section */}
-              <div style={{ textAlign: "center", marginTop: "2rem", width: "100%" }}>
-                <h2> Controls</h2> 
-                <InstructionsContainer>
-                  <span>
-                    <Kbd theme={activeTheme}>ENTER</Kbd> /{" "}
-                    <Kbd theme={activeTheme}>ESC</Kbd> Close shape
-                  </span>
+            {/* Key Strokes Section */}
+            <div style={{ textAlign: "center", marginTop: "2rem", width: "100%" }}>
+              <h2> Controls</h2>
+              <InstructionsContainer>
+                <span>
+                  <Kbd theme={activeTheme}>ENTER</Kbd> /{" "}
+                  <Kbd theme={activeTheme}>ESC</Kbd> Close shape
+                </span>
 
-                  <span>
-                    <Kbd theme={activeTheme}>CTRL</Kbd> Snap to grid
-                  </span>
+                <span>
+                  <Kbd theme={activeTheme}>CTRL</Kbd> Snap to grid
+                </span>
 
-                  <span>
-                    <Kbd theme={activeTheme}>CTRL</Kbd> +{" "}
-                    <Kbd theme={activeTheme}>Z</Kbd> Undo
-                  </span>
-                </InstructionsContainer>
-              </div>
+                <span>
+                  <Kbd theme={activeTheme}>CTRL</Kbd> +{" "}
+                  <Kbd theme={activeTheme}>Z</Kbd> Undo
+                </span>
+              </InstructionsContainer>
+            </div>
           </section>
           <ShapeBuilder />
         </Main>
